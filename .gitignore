@@ -31,4 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
-docs/ 
+# [Sesion 10 Autonoma | Entrega] Conserva ignorados los demas documentos y versiona solo los scripts de esta actividad.
+/docs/*
+!/docs/sesion10/

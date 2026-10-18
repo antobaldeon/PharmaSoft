@@ -86,7 +86,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             request.setAttribute(ATRIBUTO_ERROR, "El usuario del token no existe");
 
         } catch (JwtException | IllegalArgumentException ex) {
-            log.warn("Token inválido en {}: {}", request.getRequestURI(), ex.getMessage());
+            // [Sesion 10 Autonoma | Registro seguro] Las excepciones JWT pueden contener datos de la credencial.
+            log.warn("Token inválido en {}", request.getRequestURI());
             request.setAttribute(ATRIBUTO_ERROR, "El token no es válido");
         }
 
