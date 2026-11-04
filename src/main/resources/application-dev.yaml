@@ -2,9 +2,9 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:oracle:thin:@//localhost:1522/FREEPDB1
-    username: testdb
-    password: oracle123
+    url: ${PHARMASOFT_DB_URL:jdbc:oracle:thin:@//localhost:1522/FREEPDB1}
+    username: ${PHARMASOFT_DB_USERNAME:PHARMASOFT_DEV}
+    password: ${PHARMASOFT_DB_PASSWORD:oracle123}
   jpa:
     database-platform: org.hibernate.dialect.OracleDialect
     hibernate:
@@ -19,11 +19,10 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration
-    # Un esquema de desarrollo creado antes por ddl-auto=update ya tiene
-    # las tablas: se registra como version 1 y V1 no se vuelve a ejecutar.
-    # En un esquema vacio se aplica V1 normalmente.
-    baseline-on-migrate: true
-    baseline-version: 1
+    # Historial exclusivo del esquema de PharmaSoft, nunca el TESTDB compartido.
+    default-schema: ${PHARMASOFT_DB_USERNAME:PHARMASOFT_DEV}
+    baseline-on-migrate: false
+    clean-disabled: true
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
