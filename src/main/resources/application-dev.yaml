@@ -50,4 +50,4 @@ app:
   # Clave HMAC del JWT en Base64 (minimo 256 bits). Solo para desarrollo.
   jwt:
     secret: ILPEwcQMZU9TnjpXzv/hRWNoC9n1Imz+nPTBwMZH7TBX9n7f7XagfIgD7LhCEFZNclj1zxfx9FbVvbpfH45HOA==
-    expiracion-minutos: 1
+    expiracion-minutos: ${JWT_EXPIRACION_MINUTOS:480}
